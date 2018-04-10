@@ -26,14 +26,15 @@ export class TaskEditorComponent {
     this.done.next(false);
   }
 
-  add (event: Event): void {
-    this.task.name = this.name;
-    this.addTask(this.task);
-    this.done.next(true);
-  }
-
-  addTask(task: ITask):void {
-      this.taskService.addTask(task);
+  addTask (event: Event): Promise<void> {
+    return new Promise( (resolve, reject) => {
+      this.task.name = this.name;
+      this.taskService.addTask(this.task)
+        .then(result=>{
+          this.done.next(true);
+          resolve();
+        });
+    });
   }
 
 }

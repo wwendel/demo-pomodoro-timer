@@ -26,16 +26,26 @@ export class TaskSelectorComponent {
     this.fetchTasks();
   }
 
-  @Input() refresh(): void {
-    this.fetchTasks();
-    this.afterRefresh.next(this.tasks);
-    this.isNeedRefresh = false;
+  @Input() refresh(): Promise<boolean> {
+    return new Promise( (resolve, reject) => {
+      this.fetchTasks().then( result => {
+        this.afterRefresh.next(this.tasks);
+        this.isNeedRefresh = false;
+      });
+    });
   }
 
-  private fetchTasks() {
-    this.tasks = this.taskService.getTasks();
-    this.selectedTask = null;
-    this.selectFirstTask();
+  private fetchTasks(): Promise<boolean> {
+    return new Promise( (resolve, reject) => {
+      this.taskService.getTasks().then((result)=>{
+        this.tasks = result;
+        this.selectedTask = null;
+        this.selectFirstTask();
+        resolve(true);
+      }).catch( error => {
+        console.log(error);
+      });
+    });
   }
 
   private selectFirstTask(): void {
@@ -77,8 +87,9 @@ export class TaskSelectorComponent {
     if (isTaskAdded) {
       this.isNeedRefresh = true;
       if (this.allowSelection){
-        this.refresh();
-        this.selectLastTask();
+        this.refresh().then((result) => {
+          this.selectLastTask();
+        });
       }
     }
     this.isEdit = false;

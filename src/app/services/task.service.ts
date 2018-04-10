@@ -21,28 +21,40 @@ export class TaskService {
         this.tasks = tasks;
     }
 
-    getTasks () {
-        var list = [{name:null}]; //Add dummy item to front
-       var tasks = this.tasks.filter((t)=> {return !t.isCompleted;});  
-       //TODO: Get from repository
-       for(let task of tasks) {
-            list.push(task);
-        }
-        return list;
+    getTasks (): Promise<Array<ITask>> {
+       var promise: Promise<Array<ITask>> = new Promise((resolve,reject)=>{
+            var list = [{name:null}]; //Add dummy item to front
+            try {
+                var tasks = this.tasks.filter((t)=> {return !t.isCompleted;});  
+                //TODO: Get from repository
+                for(let task of tasks) {
+                    list.push(task);
+                }
+                resolve (list);
+            } catch (error) {
+                reject(error);
+            }
+       });
+       return promise;
     }
 
-    addTask(task: ITask): void {
-       this.tasks.push(task);
-       //TODO: Save to repository
+    addTask(task: ITask): Promise<void> {
+        return new Promise((resolve, reject)=>{
+           //TODO: Save to repository
+           this.tasks.push(task);
+            resolve();
+        });
     }
 
-    completeTask(task: ITask): void {
-        var taskIndex: number = this.tasks.findIndex( (t) => { return t.name==task.name;} )
-
-        if (taskIndex>-1) {
-            this.tasks.splice(taskIndex,1);
-            task.isCompleted = true;
-            //TODO: Save to repository
-        }
+    completeTask(task: ITask): Promise<void> {
+        return new Promise((resolve, reject)=>{
+            var taskIndex: number = this.tasks.findIndex( (t) => { return t.name==task.name;} )
+            if (taskIndex>-1) {
+                //TODO: Save to repository
+                this.tasks.splice(taskIndex,1);
+                task.isCompleted = true;
+            }
+            resolve();
+         });
      }
 }
