@@ -1,0 +1,33 @@
+.app {
+    background-color: cadetblue;
+    margin:0;
+    padding:2em;
+    padding-top:0px;
+}
+
+.activetasktitle {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.pomcomponent {
+    height: 150px;
+    float: left;
+}
+
+.pomgraphic {
+    width:150x;
+    height:150px;
+}
+
+.pomcontainer {
+    float:left;
+    width:100%;
+    margin-top:10px;
+    padding:10px;
+}
+
+.inputprompt {
+    font-weight: 200;
+    margin-bottom: 10;
+}

@@ -1,0 +1,43 @@
+<table>
+    <tr>
+        <td>
+            <img class="pomgraphic" alt="Pomodoro" src="assets/PomodoroTimer.png" />
+            <span class="pomelapsed">
+                <div class="label">Elapsed:</div>
+                <div class="time">{{getElapsedTimeDisplay()}}</div>
+                <div class="label">Remaining:</div>
+                <div class="time">{{getRemainingTimeDisplay()}}</div>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="pomocontainer">
+                <span class="buttonpane">
+                    <div *ngIf="!showAlert">
+                        <button class="btn-primary" *ngIf="!totalElapsed" (click)="startSession()">Start Work</button>
+                        <button class="btn-secondary" *ngIf="!totalElapsed" (click)="cancelSession()">Cancel</button>
+                    </div>
+                    <div class="prompt" *ngIf="totalElapsed && restStart==0">
+                        <div class="workPrompt">Work on Task</div>
+                    </div> 
+                    <div class="prompt alert" *ngIf="showAlert">
+                        <div class="restPrompt">TAKE A REST</div>
+                        <button class="btn-primary resumeButton" *ngIf="allowResume" (click)="btnResumeWork_Click">Resume Work</button>
+                    </div>
+                </span>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="footer" *ngIf="isInitialized">
+                <button class="getCancelClass()" *ngIf="totalElapsed" (click)="cancelSession()">Quit</button>
+                <button class="getDoneClass()" *ngIf="totalElapsed" (click)="completeSession()">Done</button>
+                <span *ngFor="let c of completedTimerCycles">
+                    <img class="tomato" alt="Pomodoro" src="assets/PomodoroTimer.png" />
+                </span>
+            </div>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,99 @@
+.pomcontainer {
+    float: left;
+    margin-top:10px;
+    padding-top:10px;
+}
+
+.buttonpane {
+    float:left;
+    height: 80px;
+    width: 180px;
+    vertical-align: middle;
+    align-content: center;
+    padding: 10px;
+    background-color: #488383;
+    border-radius: 10px;
+}
+
+.pomgraphic {
+    float: left;
+    width:80px;
+    height:80px;
+}
+
+.pomelapsed {
+    float: left;
+    margin: 5px 5px 5px 0px;
+    height:80px;
+    text-align: center;
+    .label {
+        font-size: 8pt;
+        font-style: italic;
+        color: #404440;
+    }
+    .time {
+        font-weight:bold;
+        padding-top:0;
+        margin-top: -4px;
+    }
+}
+.workPrompt {
+}
+
+.prompt {
+    background-color: #CCBB88;
+    border-radius: 5px;
+    align-content: center;
+    text-align: center;
+    font-size: larger;
+    height:60px;
+    padding:5px;
+}
+
+.alert {
+    background-color: yellow;
+    color: red;
+}
+
+.resumeButton {
+    float:left;
+    margin-left: 15px;
+}
+
+.cancelButton {
+    float:left;
+    width: 100px;
+    height: 25px;
+    margin-left: 15px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.doneButton {
+    float: left;
+    width: 100px;
+    height: 25px;
+    margin-top: -5px;
+    margin-right: 25px;
+    margin-bottom: 10px;
+}
+
+.elapsed {
+    text-align: center;
+    align-content: center;
+}
+
+.tomato {
+    width:40px; 
+    height:40px;
+}
+
+.footer {
+    float:left;
+    padding:10px;
+    background-color: #488383;
+    vertical-align: middle;
+    margin-top: 20px;
+    margin-left:-40px;
+    width:100vw;
+}

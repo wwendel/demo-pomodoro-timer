@@ -1,0 +1,13 @@
+    <label *ngIf="!selectedTask && !isEdit" class=prompt>Select Next Task:</label>
+    <label *ngIf="selectedTask && !isEdit" class=prompt>Current Task:</label>
+    <label *ngIf="!allowSelection" class=selected >{{selectedTask.name}}</label>
+    <div *ngIf="!isEdit">
+        <select *ngIf="allowSelection" class="selection" name="taskSelection" title="Choose a task to work on..." (change)="onSelectionChange($event)">
+            <option *ngFor="let task of tasks"  value="">{{task.name}}</option> 
+        </select>
+        <button *ngIf="allowAddition"class="btn-secondary newtaskbutton" (click)="initCreateTask()">+ New Task</button>
+    </div>
+    <div *ngIf="isEdit">
+            <label *ngIf="isEdit" class=prompt>New Task:</label>
+            <task-editor class="editor" (newTask)="onNewTask($event)" (done)="onEditDone($event)"></task-editor>
+    </div>

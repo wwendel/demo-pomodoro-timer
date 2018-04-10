@@ -1,0 +1,8 @@
+<div>
+    <label class="prompt">Enter Task Name:</label>
+</div>
+<div>
+    <textarea name="nameinput" class="nameinput" (change)="name = $event.target.value" >{{name}}</textarea>
+</div>
+<button class="btn-primary addButton" (click)="add()">Add Task</button> 
+<button class="btn-secondary" (click)="cancel()">Cancel</button> 

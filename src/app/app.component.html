@@ -1,0 +1,18 @@
+<div class="app">
+    <table >
+      <tr>
+        <td>
+          <h3>{{ title }}</h3>
+          <task-selector  (selectionChange)="onSelectionChange($event)" (afterRefresh)="onAfterRefresh" [allowSelection]="allowTaskSelection" ></task-selector>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img *ngIf="!(selectedTask && selectedTask.name)" class="pomgraphic" alt="Pomodoro" src="assets/PomodoroTimer.png" />
+          <div class="pomcontainer" >
+            <pomodoro-timer class="pomcomponent" *ngIf="haveTaskSelection" [timerCycle]="timerCycle" [timeMultiplier]="timeMultiplier" (statusChange)="onStatusChange($event)" ></pomodoro-timer>
+          </div>
+        </td>
+      </tr>
+    </table>
+</div>
